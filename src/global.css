@@ -1,0 +1,44 @@
+/* src/styles/global.css */
+
+:root {
+    /* Color palette */
+    --color-primary: #4f46e5;
+    --color-secondary: #22c55e;
+    --color-bg: #0f172a;
+    --color-text: #e2e8f0;
+
+    --color-positive: #22c55e;
+    --color-nuetral: #d38a15;
+    --color-negative: #d51717;
+
+    /* Spacing */
+    --spacing-sm: 8px;
+    --spacing-md: 16px;
+    --spacing-lg: 24px;
+
+    /* Borders / radius */
+    --radius: 8px;
+}
+
+/* Base styles */
+body {
+    background: var(--color-bg);
+    color: var(--color-text);
+    font-family: "Comic Sans MS"
+}
+
+h1 {
+    color: var(--color-text);
+}
+
+/* Reusable utility classes */
+.container {
+    padding: var(--spacing-lg);
+}
+
+.box {
+    background: var(--color-text);
+    color: var(--color-bg);
+    border-radius: var(--radius);
+    padding: var(--spacing-md);
+}
