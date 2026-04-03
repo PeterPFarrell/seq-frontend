@@ -3,13 +3,13 @@ import './Coment.css';
 import '../../global.css'
 import VoteDisplay from "../VoteDisplay/VoteDisplay.jsx";
 
-const Comment = ({name,body,votes}) => {
+const Comment = ({name,body,votes,onVote}) => {
     return (
         <div className='comment-container'>
             <div className='box'>
                 <p><b>{name}</b></p>
                 <p>{body}</p>
-                <VoteDisplay votes={votes}></VoteDisplay>
+                <VoteDisplay votes={votes} onVote={onVote}></VoteDisplay>
             </div>
         </div>
     );

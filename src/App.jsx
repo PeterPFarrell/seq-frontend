@@ -4,7 +4,7 @@ import viteLogo from './assets/vite.svg'
 import heroImg from './assets/hero.png'
 //import './App.css'
 import './global.css'
-import { getBoard } from './api/commentsApi.js'
+import { getBoard, updateVotes } from './api/commentsApi.js'
 import Comment from "./components/Comment/Comment.jsx";
 
 function App() {
@@ -14,6 +14,27 @@ function App() {
   useEffect(() => {
     getBoard("d4196a18-ee70-4520-803c-717af2d51a68").then(setCommentBoard);
   }, []);
+
+  function handleVote(id,type)
+  {
+    updateVotes("d4196a18-ee70-4520-803c-717af2d51a68",id,type)
+
+    setCommentBoard(prevBoard => {
+      const newBoard = {...prevBoard};
+      newBoard.children = newBoard.children.map(comment => {
+        if (comment.id === id) {
+          const upvotes = comment.votes.upvotes + (type ? 1 : 0);
+          const downvotes = comment.votes.downvotes + (!type ? 1 : 0);
+          return {
+            ...comment,
+            votes: {...comment.votes, upvotes, downvotes}
+          };
+        }
+        return comment;
+      });
+      return newBoard
+    });
+  }
 
   return (
     <>
@@ -29,7 +50,7 @@ function App() {
             commentBoard ?
             commentBoard.children.map((comment, index) => (
                 <div>
-                  <Comment name={comment.name} body={comment.body} votes={comment.votes.upvotes - comment.votes.downvotes}></Comment>
+                  <Comment name={comment.name} body={comment.body} votes={comment.votes.upvotes - comment.votes.downvotes} onVote={(isUpvote) => handleVote(comment.id,isUpvote)}></Comment>
                 </div>
             )) :
                 <p>loading...</p>
