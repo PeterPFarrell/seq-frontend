@@ -24,7 +24,7 @@
 body {
     background: var(--color-bg);
     color: var(--color-text);
-    font-family: "Comic Sans MS"
+    font-family: "Comic Sans MS";
 }
 
 h1 {
