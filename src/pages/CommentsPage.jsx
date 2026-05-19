@@ -9,7 +9,6 @@ export function CommentsPage() {
     const [commentBoard, setCommentBoard] = useState(null)
 
     useEffect(() => {
-        console.log(import.meta.env.VITE_SEQ_BACKEND)
         getBoardComments("d4196a18-ee70-4520-803c-717af2d51a68").then(setCommentBoard);
     }, []);
 
